@@ -58,7 +58,7 @@
     <Analyzer Include="D:\Program\2022.3.4f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scenes\NewBehaviourScript.cs" />
+    <Compile Include="Assets\Scenes\Hello.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
