@@ -13,5 +13,9 @@ public class Hello : MonoBehaviour
         _text.text = "Hello me";
     }
 
+    public void SetTexst(string str)
+    {
+        _text.text = str;
+    }
+
 }
-jkhkjhjk
