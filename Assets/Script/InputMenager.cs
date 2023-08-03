@@ -6,8 +6,8 @@ public class InputMenager : MonoBehaviour
 {
     [SerializeField] Camera mineCamra;
     [SerializeField] GameObject gameObject;
-    [SerializeField] Hello hello;
-    // Update is called once per frame
+    [SerializeField] LocationMarkerScript marker;
+
     void Update()
     {
         //if (Input.touchSupported)
@@ -18,16 +18,16 @@ public class InputMenager : MonoBehaviour
             {
                 for (int i = 0; i < inputs.Length; i++)
                 {
-                    hello.SetTexst(inputs[i].phase.ToString());
-                    if (inputs[i].phase == TouchPhase.Ended)
+                    if (inputs[i].phase == TouchPhase.Began)
                     {
                         Vector3 vec = mineCamra.ScreenToWorldPoint(inputs[i].position);
-                        hello.SetTexst(vec.ToString());
                         gameObject.transform.position = new Vector3( vec.x, vec.y,0);
-                        
+                        marker.ChangeLocation(gameObject.transform.position);
                     }
                 }
             }
         }
     }
+
+
 }
