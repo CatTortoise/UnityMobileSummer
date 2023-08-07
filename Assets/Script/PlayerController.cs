@@ -9,21 +9,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody2D playerRigidbody;
     [SerializeField] private LocationMarkerScript locationMarker;
     [SerializeField] private float moveSpeed;
-    //[SerializeField] private float flyingHeight;
-    //[SerializeField] private float minFlyingVelocity;
 
-    //public PlayerNumber PlayerNumber { get => playerNumber;private set => playerNumber = value; }
-
-    // Update is called once per frame
     private void FixedUpdate()
     {
-       /*float height;
-        if (Mathf.Abs(playerRigidbody.velocity.x) < minFlyingVelocity)
-            height = locationMarker.transform.position.y;
-        else
-            height = flyingHeight;*/
-        Vector2 moveTo = Vector2.Lerp(transform.position,new(locationMarker.transform.position.x,transform.position.y), moveSpeed * Time.deltaTime);
-        playerRigidbody.AddForce((moveTo - new Vector2(transform.position.x, transform.position.y)) * moveSpeed * Time.deltaTime,ForceMode2D.Impulse);
+
+        Vector2 moveTo;// = Vector2.Lerp(transform.position,new(locationMarker.transform.position.x,transform.position.y), moveSpeed * Time.deltaTime);
+                       //  playerRigidbody.AddForce((moveTo - new Vector2(transform.position.x, transform.position.y)) * moveSpeed * Time.deltaTime,ForceMode2D.Force);
+        if (locationMarker.isActiveAndEnabled)
+        {
+            Vector3 vector3 = locationMarker.transform.position - transform.position;
+            vector3 = vector3.normalized;
+            moveTo = new(vector3.x, 0);
+            playerRigidbody.AddForce(moveTo * moveSpeed * Time.deltaTime, ForceMode2D.Force);
+        }
     }
     
 

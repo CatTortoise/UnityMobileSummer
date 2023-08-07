@@ -21,4 +21,11 @@ public class LocationMarkerScript : MonoBehaviour
         }
             
     }
+    private void Update()
+    {
+        if(particle.isStopped || particle.isPaused)
+        {
+            gameObject.SetActive(false);
+        }
+    }
 }
