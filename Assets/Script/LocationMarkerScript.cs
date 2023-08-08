@@ -12,18 +12,20 @@ public class LocationMarkerScript : MonoBehaviour
         gameObject.SetActive(true);
         particle.Play();
     }
+
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player")
+        if (other.tag == "Player")
         {
             particle.Stop();
             gameObject.SetActive(false);
         }
-            
+
     }
+
     private void Update()
     {
-        if(particle.isStopped || particle.isPaused)
+        if (particle.isStopped || particle.isPaused)
         {
             gameObject.SetActive(false);
         }

@@ -2250,6 +2250,7 @@ MonoBehaviour:
   playerRigidbody: {fileID: 696147597}
   locationMarker: {fileID: 232706492}
   moveSpeed: 500
+  animation: {fileID: 2007506854}
 --- !u!1 &878768361
 GameObject:
   m_ObjectHideFlags: 0
@@ -7442,6 +7443,7 @@ GameObject:
   - component: {fileID: 2007506850}
   - component: {fileID: 2007506852}
   - component: {fileID: 2007506853}
+  - component: {fileID: 2007506854}
   m_Layer: 6
   m_Name: Ducky
   m_TagString: Untagged
@@ -7492,7 +7494,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -44463906, guid: 95b38d9a57a41574b8d0532785c2709d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 0.32, y: 0.32}
@@ -7591,3 +7593,17 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2007506854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2007506849}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0719d12a645ae7d4785a7a715f24f403, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 2007506853}
+  sprite: {fileID: 2007506850}
