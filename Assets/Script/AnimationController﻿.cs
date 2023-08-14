@@ -18,6 +18,12 @@ public class AnimationController : MonoBehaviour
     {
         sprite.flipX = isMovingRight;
     }
+    
+    public void TriggerJump()
+    {
+        animator.SetTrigger("Jump");
+    }
+
 
     public void ChangeBool(string boolName)
     {

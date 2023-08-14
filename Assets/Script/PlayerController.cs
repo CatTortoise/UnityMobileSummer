@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Rigidbody2D playerRigidbody;
     [SerializeField] private LocationMarkerScript locationMarker;
     [SerializeField] private float moveSpeed;
+    [SerializeField] private float jumpSpeed;
     [SerializeField] private AnimationController﻿ animation;
     private bool _movingFlag;
     private bool IsMovingRight;
@@ -51,6 +52,12 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-    
+
+    public void Jump()
+    {
+        playerRigidbody.AddForce(Vector2.up * jumpSpeed , ForceMode2D.Impulse);
+    }
+
+
 
 }
