@@ -28,8 +28,8 @@ public class LocationMarker : MonoBehaviour
         }
     }
 
-	private void OnValidate()
-	{
-		_particleSystem = GetComponentInChildren<ParticleSystem>();
-	}
+    private void OnValidate()
+    {
+        _particleSystem = GetComponentInChildren<ParticleSystem>();
+    }
 }

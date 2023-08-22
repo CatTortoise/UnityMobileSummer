@@ -13,7 +13,7 @@ public class InputManager : MonoBehaviour
             if (touch.phase == TouchPhase.Began)
             {
                 Vector3 vec = _mainCamera.ScreenToWorldPoint(touch.position);
-				_marker.transform.position = new Vector3(vec.x, vec.y, 0);
+                _marker.transform.position = new Vector3(vec.x, vec.y, 0);
                 _marker.ChangeLocation(_marker.transform.position);
             }
         }
