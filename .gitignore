@@ -1,6 +1,13 @@
-/Library
-/UserSettings
-/Logs
-/Temp
-/obj
-/.vs/UnityMobileSummer/v16/*.suo
+# Unity
+Library
+Logs
+Temp
+UserSettings
+*.csproj
+*.sln
+
+# Visual Studio
+Build
+obj
+.vs
+.vsconfig
