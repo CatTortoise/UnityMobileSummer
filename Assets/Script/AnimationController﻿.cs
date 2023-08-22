@@ -30,9 +30,9 @@ public class AnimationController : MonoBehaviour
         animator.SetBool(boolName, !animator.GetBool(boolName));
     }
 
-	private void OnValidate()
-	{
-		animator = GetComponent<Animator>();
+    private void OnValidate()
+    {
+        animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-	}
+    }
 }
