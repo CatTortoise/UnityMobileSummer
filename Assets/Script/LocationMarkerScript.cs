@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LocationMarkerScript : MonoBehaviour
 {
-
     [SerializeField] ParticleSystem particle;
+
     public void ChangeLocation(Vector3 newLocation)
     {
         transform.position = newLocation;
@@ -20,7 +18,6 @@ public class LocationMarkerScript : MonoBehaviour
             particle.Stop();
             gameObject.SetActive(false);
         }
-
     }
 
     private void Update()

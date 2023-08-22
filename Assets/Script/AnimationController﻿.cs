@@ -1,39 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
     [SerializeField] private Animator animator;
-    [SerializeField] private SpriteRenderer sprite;
-    
+    [SerializeField] private SpriteRenderer spriteRenderer;
+    #region STATE_NAMES
+    private const string IDLE = "IsIdel";
+    private const string JUMP = "Jump";
+    private const string SPRINT = "Sprint";
+    #endregion
 
-    public void ChangeIdolBool()
+    public void OnIdle()
     {
-        ChangeBool("IsIdel");
+        ToggleBool(IDLE);
     }
 
-
-    public void ChangeDirection(bool isMovingRight)
+    public void OnJump()
     {
-        sprite.flipX = isMovingRight;
-    }
-    
-    public void TriggerJump()
-    {
-        animator.SetTrigger("Jump");
+        animator.SetTrigger(JUMP);
     }
 
-
-    public void ChangeBool(string boolName)
+    public void OnChangeDirection(bool isMovingRight)
     {
-        if (animator.GetBool(boolName))
-        {
-            animator.SetBool(boolName, false);
-        }
-        else
-        {
-            animator.SetBool(boolName, true);
-        }
+        spriteRenderer.flipX = isMovingRight;
     }
+
+    public void ToggleBool(string boolName)
+    {
+        animator.SetBool(boolName, !animator.GetBool(boolName));
+    }
+
+	private void OnValidate()
+	{
+		animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+	}
 }
