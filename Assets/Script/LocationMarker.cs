@@ -1,30 +1,35 @@
 using UnityEngine;
 
-public class LocationMarkerScript : MonoBehaviour
+public class LocationMarker : MonoBehaviour
 {
-    [SerializeField] ParticleSystem particle;
+    [SerializeField] private ParticleSystem _particleSystem;
 
     public void ChangeLocation(Vector3 newLocation)
     {
         transform.position = newLocation;
         gameObject.SetActive(true);
-        particle.Play();
+        _particleSystem.Play();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
-            particle.Stop();
+            _particleSystem.Stop();
             gameObject.SetActive(false);
         }
     }
 
     private void Update()
     {
-        if (particle.isStopped || particle.isPaused)
+        if (_particleSystem.isStopped || _particleSystem.isPaused)
         {
             gameObject.SetActive(false);
         }
+    }
+
+    private void OnValidate()
+    {
+        _particleSystem = GetComponentInChildren<ParticleSystem>();
     }
 }

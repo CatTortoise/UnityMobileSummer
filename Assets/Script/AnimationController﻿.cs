@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class AnimationController : MonoBehaviour
 {
-    [SerializeField] private Animator animator;
-    [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private Animator _animator;
+    [SerializeField] private SpriteRenderer _spriteRenderer;
     #region STATE_NAMES
     private const string IDLE = "IsIdel";
     private const string JUMP = "Jump";
@@ -17,22 +17,22 @@ public class AnimationController : MonoBehaviour
 
     public void OnJump()
     {
-        animator.SetTrigger(JUMP);
+        _animator.SetTrigger(JUMP);
     }
 
     public void OnChangeDirection(bool isMovingRight)
     {
-        spriteRenderer.flipX = isMovingRight;
+        _spriteRenderer.flipX = isMovingRight;
     }
 
     public void ToggleBool(string boolName)
     {
-        animator.SetBool(boolName, !animator.GetBool(boolName));
+        _animator.SetBool(boolName, !_animator.GetBool(boolName));
     }
 
     private void OnValidate()
     {
-        animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        _animator = GetComponent<Animator>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 }
