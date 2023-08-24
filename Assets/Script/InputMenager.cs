@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InputMenager : MonoBehaviour
@@ -10,24 +8,15 @@ public class InputMenager : MonoBehaviour
 
     void Update()
     {
-        //if (Input.touchSupported)
+        Touch[] touches = Input.touches;
+        foreach (Touch touch in touches)
         {
-
-            Touch[] inputs = Input.touches;
-            if (inputs.Length > 0)
+            if (touch.phase == TouchPhase.Began)
             {
-                for (int i = 0; i < inputs.Length; i++)
-                {
-                    if (inputs[i].phase == TouchPhase.Began)
-                    {
-                        Vector3 vec = mineCamra.ScreenToWorldPoint(inputs[i].position);
-                        gameObject.transform.position = new Vector3( vec.x, vec.y,0);
-                        marker.ChangeLocation(gameObject.transform.position);
-                    }
-                }
+                Vector3 vec = mineCamra.ScreenToWorldPoint(touch.position);
+                gameObject.transform.position = new Vector3(vec.x, vec.y, 0);
+                marker.ChangeLocation(gameObject.transform.position);
             }
         }
     }
-
-
 }
