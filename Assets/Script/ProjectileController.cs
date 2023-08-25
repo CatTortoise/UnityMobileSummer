@@ -5,6 +5,8 @@ using UnityEngine;
 public class ProjectileController : MonoBehaviour
 {
     public ApplePool pool;
+    [SerializeField] private Transform _playerProjectileMarker;
+    [SerializeField] private Transform _playerMarker;
 
     [System.Serializable]
     public class ApplePool
@@ -12,6 +14,8 @@ public class ProjectileController : MonoBehaviour
         public string tag;
         public GameObject ApplePrefab;
         public int maxApples;
+        public Projectile projectile;
+        
     }
 
     public static ProjectileController Instance;
@@ -24,19 +28,25 @@ public class ProjectileController : MonoBehaviour
     //To use this object pool use
     //ProjectileController.Instance.SpawnFromPool(tag, position, rotation)
 
-    public Dictionary<string, Queue<GameObject>> poolDictionary;
+    public Dictionary<string, Queue<ApplePool>> poolDictionary;
 
     private void Start()
     {
-        poolDictionary = new Dictionary<string, Queue<GameObject>>();
+        poolDictionary = new Dictionary<string, Queue<ApplePool>>();
 
-        Queue<GameObject> appleQueue = new Queue<GameObject>();
+        Queue<ApplePool> appleQueue = new Queue<ApplePool>();
 
         for (int i = 0; i < pool.maxApples; i++)
         {
             GameObject apple = Instantiate(pool.ApplePrefab);
+            ApplePool applePool = new();
             apple.SetActive(false);
-            appleQueue.Enqueue(apple);
+
+            applePool.tag = pool.tag;
+            applePool.ApplePrefab = pool.ApplePrefab;
+            applePool.maxApples = pool.maxApples;
+            applePool.projectile = pool.projectile;
+            appleQueue.Enqueue(applePool);
         }
 
         poolDictionary.Add(pool.tag, appleQueue);
@@ -49,12 +59,21 @@ public class ProjectileController : MonoBehaviour
             Debug.Log("Pool with tag " + tag + " doesn't exist");
         }
 
-        GameObject objectToSpawn = poolDictionary[tag].Dequeue();
+        ApplePool objectToSpawn = poolDictionary[tag].Dequeue();
 
-        objectToSpawn.SetActive(true);
-        objectToSpawn.transform.position = position;
-        objectToSpawn.transform.rotation = rotation;
-
+        objectToSpawn.ApplePrefab.SetActive(true);
+        objectToSpawn.ApplePrefab.transform.position = _playerProjectileMarker.position;
+        objectToSpawn.ApplePrefab.transform.rotation = _playerProjectileMarker.rotation;
+        if (_playerMarker.position.x > _playerProjectileMarker.position.x)
+        {
+            objectToSpawn.projectile.rigidbody2DAddForce(Projectile.Direction.right);
+        }
+        else
+        {
+            objectToSpawn.projectile.rigidbody2DAddForce(Projectile.Direction.Left);
+        }
         poolDictionary[tag].Enqueue(objectToSpawn);
     }
+
+
 }

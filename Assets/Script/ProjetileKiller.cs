@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ProjetileKiller : MonoBehaviour
 {
+
     
     private void OnEnable()
     {
@@ -15,5 +16,6 @@ public class ProjetileKiller : MonoBehaviour
         yield return new WaitForSeconds(5);
         gameObject.SetActive(false);
     }
- 
+
+
 }
