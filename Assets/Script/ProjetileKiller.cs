@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class ProjetileKiller : MonoBehaviour
 {
-    private void Awake()
+    
+    private void OnEnable()
     {
         StartCoroutine(WaitFor());
     }
@@ -12,6 +13,7 @@ public class ProjetileKiller : MonoBehaviour
     IEnumerator WaitFor()
     {
         yield return new WaitForSeconds(5);
-        Object.Destroy(this.gameObject);
+        gameObject.SetActive(false);
     }
+ 
 }

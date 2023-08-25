@@ -131,10 +131,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 917284615269224894, guid: d732c433f052247478d37fac6cedfe30, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: e86e7ed6735bd08478d0afe9b6b4344b, type: 2}
     - target: {fileID: 7478189960424040069, guid: d732c433f052247478d37fac6cedfe30, type: 3}
       propertyPath: m_RootOrder
       value: 15
@@ -183,17 +179,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Apple Projectile
       objectReference: {fileID: 0}
-    - target: {fileID: 7478189960424040071, guid: d732c433f052247478d37fac6cedfe30, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7478189960424040071, guid: d732c433f052247478d37fac6cedfe30, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 368803575}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d732c433f052247478d37fac6cedfe30, type: 3}
 --- !u!1001 &177623574
 PrefabInstance:
@@ -347,24 +336,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b33663db1a2afb440bb7403b6c155247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particle: {fileID: 878768363}
+  _particleSystem: {fileID: 878768363}
 --- !u!1 &368803570 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7478189960424040071, guid: d732c433f052247478d37fac6cedfe30, type: 3}
   m_PrefabInstance: {fileID: 138844682}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &368803575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 368803570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 001d3a29e9f1d7140ab5eeda0dce8509, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &399643150
 GameObject:
   m_ObjectHideFlags: 0
@@ -2337,11 +2314,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 800ed1cace0e2ed4b96d740c65ed7689, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerRigidbody: {fileID: 696147597}
-  locationMarker: {fileID: 232706492}
-  moveSpeed: 500
-  jumpSpeed: 0
-  animation: {fileID: 2007506854}
+  _playerRigidbody: {fileID: 696147597}
+  _locationMarker: {fileID: 232706492}
+  _animationController: {fileID: 2007506854}
+  _moveSpeed: 500
+  _jumpSpeed: 0
 --- !u!114 &696147599
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2413,6 +2390,10 @@ PrefabInstance:
     - target: {fileID: 4106967144069191874, guid: 7fc30cd74f5aa724387df7546e0f3d5b, type: 3}
       propertyPath: m_Name
       value: PF Village Props - Training Dummy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4106967144069191874, guid: 7fc30cd74f5aa724387df7546e0f3d5b, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7340,9 +7321,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5621a33ff594a3144839869481224961, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mineCamra: {fileID: 607705184}
-  gameObject: {fileID: 232706488}
-  marker: {fileID: 232706492}
+  _mainCamera: {fileID: 607705184}
+  _marker: {fileID: 232706492}
 --- !u!4 &907772081
 Transform:
   m_ObjectHideFlags: 0
@@ -7816,5 +7796,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0719d12a645ae7d4785a7a715f24f403, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 2007506853}
-  sprite: {fileID: 2007506850}
+  _animator: {fileID: 2007506853}
+  _spriteRenderer: {fileID: 2007506850}

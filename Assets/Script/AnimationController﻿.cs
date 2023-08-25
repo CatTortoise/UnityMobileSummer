@@ -5,9 +5,9 @@ public class AnimationController : MonoBehaviour
     [SerializeField] private Animator _animator;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     #region STATE_NAMES
-    private const string IDLE = "IsIdel";
-    private const string JUMP = "Jump";
-    private const string SPRINT = "Sprint";
+    public const string IDLE = "IsIdel";
+    public const string JUMP = "Jump";
+    public const string THROW = "Throw";
     #endregion
 
     public void OnIdle()
