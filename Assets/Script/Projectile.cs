@@ -12,7 +12,7 @@ public class Projectile : MonoBehaviour
     }
     [SerializeField] private float _throwForce;
 
-    private Rigidbody2D _rigidbody2D;
+    [SerializeField] private Rigidbody2D _rigidbody2D;
 
     public void rigidbody2DAddForce(Direction direction)
     {
