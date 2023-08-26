@@ -14,8 +14,8 @@ public class ProjectileController : MonoBehaviour
         public string tag;
         public GameObject ApplePrefab;
         public int maxApples;
-        public Projectile projectile;
-        
+        //public Projectile projectile;
+        public Rigidbody2D AppleRigidbody2D;
     }
 
     public static ProjectileController Instance;
@@ -43,9 +43,8 @@ public class ProjectileController : MonoBehaviour
             apple.SetActive(false);
 
             applePool.tag = pool.tag;
-            applePool.ApplePrefab = pool.ApplePrefab;
+            applePool.ApplePrefab = apple;
             applePool.maxApples = pool.maxApples;
-            applePool.projectile = pool.projectile;
             appleQueue.Enqueue(applePool);
         }
 
@@ -64,14 +63,15 @@ public class ProjectileController : MonoBehaviour
         objectToSpawn.ApplePrefab.SetActive(true);
         objectToSpawn.ApplePrefab.transform.position = _playerProjectileMarker.position;
         objectToSpawn.ApplePrefab.transform.rotation = _playerProjectileMarker.rotation;
-        if (_playerMarker.position.x > _playerProjectileMarker.position.x)
+        
+        /* if (_playerMarker.position.x > _playerProjectileMarker.position.x)
         {
             objectToSpawn.projectile.rigidbody2DAddForce(Projectile.Direction.right);
         }
         else
         {
             objectToSpawn.projectile.rigidbody2DAddForce(Projectile.Direction.Left);
-        }
+        }*/
         poolDictionary[tag].Enqueue(objectToSpawn);
     }
 
