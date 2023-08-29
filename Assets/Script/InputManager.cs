@@ -4,10 +4,9 @@ public class InputManager : MonoBehaviour
 {
     [SerializeField] private Camera _mainCamera;
     [SerializeField] private LocationMarker _marker;
-    private bool isEnemy = false;
-    private const string ENEMY = "Enemy";
+    private const string ENEMY_TAG = "Enemy";
 
-    public bool IsEnemy { get => isEnemy; private set => isEnemy = value; }
+    public bool IsTargetingEnemy { get; private set; }
 
     void Update()
     {
@@ -23,7 +22,7 @@ public class InputManager : MonoBehaviour
                 Collider2D hitCollider = hit2D.collider;
                 if (hitCollider != null && hitCollider.isTrigger == true) 
                 {
-                    IsEnemy = (hitCollider.tag == ENEMY);
+                    IsTargetingEnemy = (hitCollider.tag == ENEMY_TAG);
                 }
             }
         }
@@ -31,11 +30,6 @@ public class InputManager : MonoBehaviour
 
     public void IsEnemyReset()
     {
-        if (isEnemy)
-        {
-            IsEnemy = false;
-        }
+        IsTargetingEnemy = false;
     }
-
-
 }

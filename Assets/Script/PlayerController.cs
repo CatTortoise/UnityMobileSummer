@@ -1,23 +1,17 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-//public enum PlayerNumber { PlayerOne, PlayerTwo}
 public class PlayerController : MonoBehaviour
 {
-   //[SerializeField] private PlayerNumber playerNumber;
     [SerializeField] private Rigidbody2D _playerRigidbody;
-    [SerializeField] private LocationMarker _locationMarker;
+    [SerializeField] private ProjectileController _projectileController;
     [SerializeField] private AnimationController﻿ _animationController;
     [SerializeField] private InputManager _inputManager;
+    [SerializeField] private LocationMarker _locationMarker;
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _jumpSpeed;
     private Vector2 _moveTo;
     private bool _movingFlag = false;
     private bool _isMovingRight = true;
-
-    #region Projectile Tags
-    private const string APPLE = "apple";
-    #endregion
 
     private void FixedUpdate()
     {
@@ -39,24 +33,23 @@ public class PlayerController : MonoBehaviour
             _animationController.OnIdle();
             _movingFlag = false;
         }
-        if (_inputManager.IsEnemy)
+        if (_inputManager.IsTargetingEnemy)
         {
             _inputManager.IsEnemyReset();
-            Throw();
-
+            ThrowApple();
         }
     }
 
-
-    public void MoveTo(Vector3 locationDelta)
-    {        
-        if (_isMovingRight != (0 > locationDelta.normalized.x))
+    public void MoveTo(Vector2 locationDelta)
+    {
+        bool isMovingRight = locationDelta.normalized.x > 0;
+        if (_isMovingRight != isMovingRight)
         {
-            _isMovingRight = (0 > locationDelta.normalized.x);
             _animationController.OnChangeDirection(_isMovingRight);
             _moveTo = new(locationDelta.x, 0);
         }
-        
+        _isMovingRight = isMovingRight;
+
         _playerRigidbody.AddForce(_moveTo * _moveSpeed * Time.fixedDeltaTime, ForceMode2D.Force);
     }
     public void Jump()
@@ -64,14 +57,16 @@ public class PlayerController : MonoBehaviour
         _playerRigidbody.AddForce(Vector2.up * _jumpSpeed, ForceMode2D.Impulse);
     }
 
-    public void Throw()
+    public void ThrowApple()
     {
-        ProjectileController.Instance.SpawnFromPool(APPLE, transform.position, transform.rotation);
+        var launchDirection = _isMovingRight? Vector2.right : Vector2.left;
+        _projectileController.Throw(launchDirection);
     }
 
     private void OnValidate()
     {
-        _playerRigidbody = GetComponentInChildren<Rigidbody2D>();
+        _playerRigidbody = GetComponent<Rigidbody2D>();
+        _projectileController = GetComponent<ProjectileController>();
         _animationController = GetComponentInChildren<AnimationController>();
     }
 }

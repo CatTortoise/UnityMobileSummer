@@ -134,6 +134,7 @@ MonoBehaviour:
   _playerRigidbody: {fileID: 6047572758290621515}
   _locationMarker: {fileID: 0}
   _animationController: {fileID: 2981471950049370064}
+  _projectileController: {fileID: 8078152318669324141}
   _inputManager: {fileID: 0}
   _moveSpeed: 500
   _jumpSpeed: 0
@@ -149,13 +150,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b8a67c556a4dbe40a2d7a89e16aa7dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pool:
-    tag: apple
-    ApplePrefab: {fileID: 2797715706644358044}
-    maxApples: 5
-    AppleRigidbody2D: {fileID: 4606350881943001986}
-  _playerProjectileMarker: {fileID: 7936372679768052057}
-  _playerMarker: {fileID: 590947503376774063}
+  _applePrefab: {fileID: 7653073395655212742}
+  _appleLaunchPoint: {fileID: 7936372679768052057}
+  _applesCount: 10
 --- !u!1 &5634030918553696793
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,7 +284,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7936372679768052057}
   m_Layer: 6
-  m_Name: ProjectileMarker
+  m_Name: Apple Launch Point
   m_TagString: Untagged
   m_Icon: {fileID: 7866945982896999795, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -318,11 +315,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7478189960424040069, guid: d732c433f052247478d37fac6cedfe30, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.75
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7478189960424040069, guid: d732c433f052247478d37fac6cedfe30, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.41
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7478189960424040069, guid: d732c433f052247478d37fac6cedfe30, type: 3}
       propertyPath: m_LocalPosition.z
@@ -365,18 +362,19 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d732c433f052247478d37fac6cedfe30, type: 3}
---- !u!1 &2797715706644358044 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7478189960424040071, guid: d732c433f052247478d37fac6cedfe30, type: 3}
-  m_PrefabInstance: {fileID: 4689555327679907099}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2797715706644358046 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7478189960424040069, guid: d732c433f052247478d37fac6cedfe30, type: 3}
   m_PrefabInstance: {fileID: 4689555327679907099}
   m_PrefabAsset: {fileID: 0}
---- !u!50 &4606350881943001986 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 9149535440953663129, guid: d732c433f052247478d37fac6cedfe30, type: 3}
+--- !u!114 &7653073395655212742 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3107914810514455517, guid: d732c433f052247478d37fac6cedfe30, type: 3}
   m_PrefabInstance: {fileID: 4689555327679907099}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9435ea85ed0fa541a413f6b49509a7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
