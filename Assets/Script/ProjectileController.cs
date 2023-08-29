@@ -1,60 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class ProjectileController : MonoBehaviour
 {
-    public ApplePool pool;
-
-    [System.Serializable]
-    public class ApplePool
-    {
-        public string tag;
-        public GameObject ApplePrefab;
-        public int maxApples;
-    }
-
-    public static ProjectileController Instance;
+    [SerializeField] private Apple _applePrefab;
+    [SerializeField] private Transform _appleLaunchPoint;
+    [SerializeField] private int _applesCount = 10;
+    private ObjectPool<Apple> _applePool;
 
     private void Awake()
     {
-        Instance = this;
+        InstantiateApplePool();
     }
 
-    //To use this object pool use
-    //ProjectileController.Instance.SpawnFromPool(tag, position, rotation)
-
-    public Dictionary<string, Queue<GameObject>> poolDictionary;
-
-    private void Start()
+    public Apple Throw(Vector2 launchDirection)
     {
-        poolDictionary = new Dictionary<string, Queue<GameObject>>();
-
-        Queue<GameObject> appleQueue = new Queue<GameObject>();
-
-        for (int i = 0; i < pool.maxApples; i++)
-        {
-            GameObject apple = Instantiate(pool.ApplePrefab);
-            apple.SetActive(false);
-            appleQueue.Enqueue(apple);
-        }
-
-        poolDictionary.Add(pool.tag, appleQueue);
+        Apple apple = _applePool.Get();
+        var startPosition = _appleLaunchPoint.position;
+        apple.Init(startPosition, launchDirection, OnRelease);
+        return apple;
     }
 
-    public void SpawnFromPool(string tag, Vector2 position, Quaternion rotation)
+    private void OnRelease(Apple apple)
     {
-        if (!poolDictionary.ContainsKey(tag))
-        {
-            Debug.Log("Pool with tag " + tag + " doesn't exist");
-        }
+        _applePool.Release(apple);
+    }
 
-        GameObject objectToSpawn = poolDictionary[tag].Dequeue();
-
-        objectToSpawn.SetActive(true);
-        objectToSpawn.transform.position = position;
-        objectToSpawn.transform.rotation = rotation;
-
-        poolDictionary[tag].Enqueue(objectToSpawn);
+    private void InstantiateApplePool()
+    {
+        _applePool = new ObjectPool<Apple>(
+            createFunc: () => Instantiate(_applePrefab),
+            actionOnGet: apple => apple.gameObject.SetActive(true),
+            actionOnRelease: apple => apple.gameObject.SetActive(false),
+            actionOnDestroy: apple => Destroy(apple.gameObject),
+            defaultCapacity: _applesCount);
     }
 }
